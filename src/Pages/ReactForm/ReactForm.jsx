@@ -56,11 +56,29 @@ export default class ReactForm extends Component {
     })
   }
 
+  updateProduct = (prodUpdate) => {
+    //Tìm ra product có id = product update lấy ra thay đổi
+    let prod = this.state.arrProduct.find(pro => pro.id === prodUpdate.id)
+
+    if (prod) {
+      //lấy ra các trường prod trong arrProduct gán = dữ liệu sau khi bấm nút update
+      for(let key in prod) {
+
+        prod[key] = prodUpdate[key]
+      }
+    }
+
+    //gọi hàm setState để render lại giao diện
+    this.setState({
+      arrProduct: this.state.arrProduct
+    })
+  }
+
   render() {
     return (
       <div className="container">
         <h3>Product Management</h3>
-        <ProductForm addProduct={this.addProduct} productEdit={this.state.productEdit}/>
+        <ProductForm addProduct={this.addProduct} productEdit={this.state.productEdit} updateProduct={this.updateProduct}/>
         <table className="table mt-5">
           <thead>
             <tr>

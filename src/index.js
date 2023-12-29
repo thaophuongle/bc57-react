@@ -8,7 +8,6 @@ import HandleEvent from "./HandleEvent/HandleEvent";
 import ChangeFontSize from "./StateDemo/ChangeFontSize";
 import ChangeColor from "./StateDemo/ChangeColor";
 import ChangeAvatar from "./StateDemo/ChangeAvatar";
-import ChangeCarColor from "./StateDemo/ChangeCarColor";
 import RenderWithMap from "./RenderWithMap/RenderWithMap";
 import DemoProps from "./Props/DemoProps/DemoProps";
 import EXRenderProductList from "./Props/EXRenderProductList/EXRenderProductList";
@@ -32,27 +31,40 @@ import Register from "./Pages/Register";
 import Admin from "./Pages/Admin";
 import ReactForm from "./Pages/ReactForm/ReactForm";
 import ReactLifeCycle from "./Pages/ReactLifeCycle/ReactLifeCycle";
+import ChangeNumberRedux from "./DemoRedux/ChangeNumberRedux";
+import ChangeCarColor from "./DemoRedux/ChangeCarColor";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 //Tạo root trên thẻ div#root
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //JSX
+
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="" element={<HomeTemplate />}>
-        <Route path="gio-hang" element={<BaiTapGioHang />}></Route>
-        <Route path="bt-change-color" element={<ChangeColor />} />
-        <Route index element={<BaiTapGioHang />}></Route>
-        <Route path="react-form" element={<ReactForm />}></Route>
-        <Route path="react-life-cycle" element={<ReactLifeCycle />} />
-      </Route>
-      <Route path="user" element={<UserTemplate />}>
-        <Route index element={<Login />}></Route>
-        <Route path="login" element={<Login />}></Route>
-        <Route path="register" element={<Register />}></Route>
-      </Route>
-      <Route path="admin" element={<Admin />} />
-      <Route path="*" element={<Navigate to="/" />}></Route>
-    </Routes>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<HomeTemplate />}>
+          <Route index element={<div>Trang chủ</div>}></Route>
+          <Route path="gio-hang" element={<BaiTapGioHang />} />
+          <Route path="bt-change-color" element={<ChangeColor />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="react-form" element={<ReactForm />}></Route>
+          <Route path="react-life-cycle" element={<ReactLifeCycle />}></Route>
+          <Route
+            path="redux-change-number"
+            element={<ChangeNumberRedux />}
+          ></Route>
+          <Route path="redux-change-car" element={<ChangeCarColor />}></Route>
+        </Route>
+        <Route path="user" element={<UserTemplate />}>
+          <Route index element={<Login />}></Route>
+          <Route path="login" element={<Login />}></Route>
+          <Route path="register" element={<Register />}></Route>
+        </Route>
+        <Route path="admin" element={<Admin />}></Route>
+        <Route path="*" element={<Navigate to="" />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 );
