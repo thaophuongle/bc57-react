@@ -1,4 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import imgReducer from "./reducers/imgReducer";
+import fontSizeReducer from "./reducers/fontSizeReducer";
+import gioHangReducer from "./reducers/gioHangReducer";
 
 export const store = configureStore({
   reducer: {
@@ -15,11 +18,8 @@ export const store = configureStore({
         }
       
     },
-    img: (state = "./img/CarBasic/products/black-car.jpg", action) => {
-        if(action.type === 'CHANGE_CAR_COLOR_ACTION'){
-            state = `./img/CarBasic/products/${action.payload}-car.jpg`
-        }
-        return state;
-    },
+    img: imgReducer,
+    fSizeState: fontSizeReducer,
+    gioHangState: gioHangReducer,
   },
 });

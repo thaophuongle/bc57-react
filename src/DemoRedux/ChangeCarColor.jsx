@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { changeCarColorAction } from '../redux/reducers/imgReducer';
 
 class ChangeCarColor extends Component {
   render() {
@@ -9,25 +10,27 @@ class ChangeCarColor extends Component {
         <h3>Change car color</h3>
         <div className='row'>
             <div className='col-6'>
-                <img src={img} alt="..." className='w-100' />
+                <img src={img.imgState} alt="..." className='w-100' />
             </div>
             <div className='col-6'>
                 <button className='btn btn-danger' onClick={()=>{
                     //Tạo action đưa dữ liệu lên store
-                    const action = {
-                        type:'CHANGE_CAR_COLOR_ACTION',
-                        payload: 'red'
-                    };
+                    // const action = {
+                    //     type:'imgReducer/changeCarColorAction',
+                    //     payload: 'red'
+                    // };
                     //Dùng props dispatch đưa dữ liệu lên redux
+                    const action = changeCarColorAction('red')
                     dispatch(action)
                 }}>Red</button>
                 <button className='btn btn-dark mx-2' onClick={()=>{
                       //Tạo action đưa dữ liệu lên store
-                      const action = {
-                        type:'CHANGE_CAR_COLOR_ACTION',
-                        payload: 'black'
-                    };
+                    //   const action = {
+                    //     type:'imgReducer/changeCarColorAction',
+                    //     payload: 'black'
+                    // };
                     //Dùng props dispatch đưa dữ liệu lên redux
+                    const action = changeCarColorAction('black')
                     dispatch(action)
                 }}>Black</button>
             </div>
